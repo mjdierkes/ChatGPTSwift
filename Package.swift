@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "ChatGPTSwift",
-    platforms: [.iOS(.v15), .macOS(.v12), .tvOS(.v15), .watchOS(.v8)],
+    platforms: [.iOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -13,7 +13,6 @@ let package = Package(
             targets: ["ChatGPTSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.9.0"),
         .package(url: "https://github.com/alfianlosari/GPTEncoder.git", exact: "1.0.4")
     ],
     targets: [
@@ -22,11 +21,7 @@ let package = Package(
         .target(
             name: "ChatGPTSwift",
             dependencies: [
-                .product(name: "AsyncHTTPClient", package: "async-http-client", condition: .when(platforms: [.linux])),
                 .product(name: "GPTEncoder", package: "GPTEncoder")
             ]),
-        .testTarget(
-            name: "ChatGPTSwiftTests",
-            dependencies: ["ChatGPTSwift"]),
     ]
 )
